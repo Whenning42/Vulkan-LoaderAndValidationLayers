@@ -645,7 +645,7 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateDevice(VkPhysicalDevice physicalDevice, c
             // Save app-enabled features in this device's layer_data structure
             // The enabled features can come from either pEnabledFeatures, or from the pNext chain
             const VkPhysicalDeviceFeatures *enabled_features_found = pCreateInfo->pEnabledFeatures;
-            if ((nullptr == enabled_features_found) && my_device_data->extensions.vk_khr_get_physical_device_properties_2) {
+            if (nullptr == enabled_features_found) {
                 const auto *features2 = lvl_find_in_chain<VkPhysicalDeviceFeatures2KHR>(pCreateInfo->pNext);
                 if (features2) {
                     enabled_features_found = &(features2->features);

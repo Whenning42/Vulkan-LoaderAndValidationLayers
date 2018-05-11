@@ -520,9 +520,11 @@ CUSTOM_C_INTERCEPTS = {
 ''',
 'vkEnumerateDeviceExtensionProperties': '''
     // If requesting number of extensions, return that
+    std::vector<const char*> hacked_extensions = {VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME, VK_KHR_MAINTENANCE3_EXTENSION_NAME};
     if (!pLayerName) {
         if (!pProperties) {
-            *pPropertyCount = (uint32_t)device_extension_map.size();
+            //*pPropertyCount = (uint32_t)device_extension_map.size();
+            *pPropertyCount = (uint32_t)device_extension_map.size() + hacked_extensions.size();
         } else {
             uint32_t i = 0;
             for (const auto &name_ver_pair : device_extension_map) {
@@ -534,7 +536,13 @@ CUSTOM_C_INTERCEPTS = {
                 pProperties[i].specVersion = name_ver_pair.second;
                 ++i;
             }
-            if (i != device_extension_map.size()) {
+            for (auto extension : hacked_extensions) {
+              std::strncpy(pProperties[i].extensionName, extension, sizeof(pProperties[i].extensionName));
+              pProperties[i].extensionName[sizeof(pProperties[i].extensionName) - 1] = 0;
+              pProperties[i].specVersion = 1;
+              ++i;
+            }
+            if (i != device_extension_map.size() + hacked_extensions.size()) {
                 return VK_INCOMPLETE;
             }
         }
@@ -670,11 +678,12 @@ CUSTOM_C_INTERCEPTS = {
     return GetInstanceProcAddr(nullptr, pName);
 ''',
 'vkGetPhysicalDeviceMemoryProperties': '''
-    pMemoryProperties->memoryTypeCount = 2;
+    pMemoryProperties->memoryTypeCount = 3;
     pMemoryProperties->memoryTypes[0].propertyFlags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     pMemoryProperties->memoryTypes[0].heapIndex = 0;
     pMemoryProperties->memoryTypes[1].propertyFlags = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT | VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_CACHED_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     pMemoryProperties->memoryTypes[1].heapIndex = 1;
+    pMemoryProperties->memoryTypes[2] = pMemoryProperties->memoryTypes[1];
     pMemoryProperties->memoryHeapCount = 2;
     pMemoryProperties->memoryHeaps[0].flags = 0;
     pMemoryProperties->memoryHeaps[0].size = 8000000000;
@@ -739,6 +748,11 @@ CUSTOM_C_INTERCEPTS = {
     GetPhysicalDeviceFormatProperties(physicalDevice, format, &pFormatProperties->formatProperties);
 ''',
 'vkGetPhysicalDeviceImageFormatProperties': '''
+    // A hardcoded unsupported format
+    if (format == VK_FORMAT_E5B9G9R9_UFLOAT_PACK32) {
+        return VK_ERROR_FORMAT_NOT_SUPPORTED;
+    }
+
     // TODO: Just hard-coding some values for now
     // TODO: If tiling is linear, limit the mips, levels, & sample count
     if (VK_IMAGE_TILING_LINEAR == tiling) {
@@ -794,6 +808,40 @@ CUSTOM_C_INTERCEPTS = {
         write_props->maxDescriptorSetUpdateAfterBindStorageImages = 500000;
         write_props->maxDescriptorSetUpdateAfterBindInputAttachments = 500000;
     }
+
+    const auto *push_descriptor_props = lvl_find_in_chain<VkPhysicalDevicePushDescriptorPropertiesKHR>(pProperties->pNext);
+    if(push_descriptor_props) {
+      VkPhysicalDevicePushDescriptorPropertiesKHR* write_props = (VkPhysicalDevicePushDescriptorPropertiesKHR*)push_descriptor_props;
+      write_props->maxPushDescriptors = 32;
+      return;
+    }
+''',
+'vkGetPhysicalDeviceExternalSemaphoreProperties':'''
+    // Hard code support for all handle types and features
+    pExternalSemaphoreProperties->exportFromImportedHandleTypes = 0x1F;
+    pExternalSemaphoreProperties->compatibleHandleTypes = 0x1F;
+    pExternalSemaphoreProperties->externalSemaphoreFeatures = 0x3;
+''',
+'vkGetPhysicalDeviceExternalSemaphorePropertiesKHR':'''
+    GetPhysicalDeviceExternalSemaphoreProperties(physicalDevice, pExternalSemaphoreInfo, pExternalSemaphoreProperties);
+''',
+'vkGetPhysicalDeviceExternalFenceProperties':'''
+    // Hard-code support for all handle types and features
+    pExternalFenceProperties->exportFromImportedHandleTypes = 0x1F;
+    pExternalFenceProperties->compatibleHandleTypes = 0x1F;
+    pExternalFenceProperties->externalFenceFeatures = 0x3;
+''',
+'vkGetPhysicalDeviceExternalFencePropertiesKHR':'''
+    GetPhysicalDeviceExternalFenceProperties(physicalDevice, pExternalFenceInfo, pExternalFenceProperties);
+''',
+'vkGetPhysicalDeviceExternalBufferProperties':'''
+    // Hard-code support for all handle types and features
+    pExternalBufferProperties->externalMemoryProperties.externalMemoryFeatures = 0x7;
+    pExternalBufferProperties->externalMemoryProperties.exportFromImportedHandleTypes = 0x1F;
+    pExternalBufferProperties->externalMemoryProperties.compatibleHandleTypes = 0x1F;
+''',
+'vkGetPhysicalDeviceExternalBufferPropertiesKHR':'''
+    GetPhysicalDeviceExternalBufferProperties(physicalDevice, pExternalBufferInfo, pExternalBufferProperties);
 ''',
 'vkGetBufferMemoryRequirements': '''
     // TODO: Just hard-coding reqs for now
@@ -808,7 +856,9 @@ CUSTOM_C_INTERCEPTS = {
     // TODO: Just hard-coding reqs for now
     pMemoryRequirements->size = 4096;
     pMemoryRequirements->alignment = 1;
-    pMemoryRequirements->memoryTypeBits = 0xFFFF;
+
+    // Here we hard-code that the memory type at index 3 doesn't support this image.
+    pMemoryRequirements->memoryTypeBits = 0xFFFF & ~0x8;
 ''',
 'vkGetImageMemoryRequirements2KHR': '''
     GetImageMemoryRequirements(device, pInfo->image, &pMemoryRequirements->memoryRequirements);

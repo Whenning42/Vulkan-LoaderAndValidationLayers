@@ -1678,6 +1678,12 @@
             "bufferFeatures": 0
         },
         {
+            "formatID": 1000156000,
+            "linearTilingFeatures": 0,
+            "optimalTilingFeatures": 49152,
+            "bufferFeatures": 49152
+        },
+        {
             "formatID": 1000156002,
             "linearTilingFeatures": 0,
             "optimalTilingFeatures": 1,

@@ -11288,7 +11288,7 @@ VKAPI_ATTR VkResult VKAPI_CALL EnumeratePhysicalDevices(VkInstance instance, uin
             auto &phys_device_state = instance_data->physical_device_map[pPhysicalDevices[i]];
             phys_device_state.phys_device = pPhysicalDevices[i];
             // Init actual features for each physical device
-            instance_data->dispatch_table.GetPhysicalDeviceFeatures(pPhysicalDevices[i], &phys_device_state.features2.features);
+            instance_data->dispatch_table.GetPhysicalDeviceFeatures2(pPhysicalDevices[i], phys_device_state.features2.ptr());
         }
     }
     return result;
@@ -12126,7 +12126,7 @@ static void PostCallRecordEnumeratePhysicalDeviceGroups(instance_layer_data *ins
                 auto &phys_device_state = instance_data->physical_device_map[cur_phys_dev];
                 phys_device_state.phys_device = cur_phys_dev;
                 // Init actual features for each physical device
-                instance_data->dispatch_table.GetPhysicalDeviceFeatures(cur_phys_dev, &phys_device_state.features2.features);
+                instance_data->dispatch_table.GetPhysicalDeviceFeatures2(cur_phys_dev, phys_device_state.features2.ptr());
             }
         }
     }
