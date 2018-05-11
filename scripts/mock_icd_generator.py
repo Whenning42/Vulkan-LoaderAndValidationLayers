@@ -520,9 +520,11 @@ CUSTOM_C_INTERCEPTS = {
 ''',
 'vkEnumerateDeviceExtensionProperties': '''
     // If requesting number of extensions, return that
+    std::vector<const char*> hacked_extensions = {VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME, VK_KHR_MAINTENANCE3_EXTENSION_NAME};
     if (!pLayerName) {
         if (!pProperties) {
-            *pPropertyCount = (uint32_t)device_extension_map.size();
+            //*pPropertyCount = (uint32_t)device_extension_map.size();
+            *pPropertyCount = (uint32_t)device_extension_map.size() + hacked_extensions.size();
         } else {
             uint32_t i = 0;
             for (const auto &name_ver_pair : device_extension_map) {
@@ -534,7 +536,13 @@ CUSTOM_C_INTERCEPTS = {
                 pProperties[i].specVersion = name_ver_pair.second;
                 ++i;
             }
-            if (i != device_extension_map.size()) {
+            for (auto extension : hacked_extensions) {
+              std::strncpy(pProperties[i].extensionName, extension, sizeof(pProperties[i].extensionName));
+              pProperties[i].extensionName[sizeof(pProperties[i].extensionName) - 1] = 0;
+              pProperties[i].specVersion = 1;
+              ++i;
+            }
+            if (i != device_extension_map.size() + hacked_extensions.size()) {
                 return VK_INCOMPLETE;
             }
         }
@@ -710,21 +718,16 @@ CUSTOM_C_INTERCEPTS = {
 ''',
 'vkGetPhysicalDeviceFeatures2KHR': '''
     GetPhysicalDeviceFeatures(physicalDevice, &pFeatures->features);
-    uint32_t num_bools = 0; // Count number of VkBool32s in extension structs
-    VkBool32* feat_bools = nullptr;
-    const auto *desc_idx_features = lvl_find_in_chain<VkPhysicalDeviceDescriptorIndexingFeaturesEXT>(pFeatures->pNext);
-    if (desc_idx_features) {
-        const auto bool_size = sizeof(VkPhysicalDeviceDescriptorIndexingFeaturesEXT) - offsetof(VkPhysicalDeviceDescriptorIndexingFeaturesEXT, shaderInputAttachmentArrayDynamicIndexing);
-        num_bools = bool_size/sizeof(VkBool32);
-        feat_bools = (VkBool32*)&desc_idx_features->shaderInputAttachmentArrayDynamicIndexing;
-        SetBoolArrayTrue(feat_bools, num_bools);
-    }
-    const auto *blendop_features = lvl_find_in_chain<VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT>(pFeatures->pNext);
-    if (blendop_features) {
-        const auto bool_size = sizeof(VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT) - offsetof(VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT, advancedBlendCoherentOperations);
-        num_bools = bool_size/sizeof(VkBool32);
-        feat_bools = (VkBool32*)&blendop_features->advancedBlendCoherentOperations;
-        SetBoolArrayTrue(feat_bools, num_bools);
+    auto extension_struct = static_cast<VkPhysicalDeviceDescriptorIndexingFeaturesEXT*>(pFeatures->pNext);
+    while(extension_struct) {
+      if(extension_struct->sType == VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT) {
+        size_t offset = 2 * sizeof(void*);
+        VkBool32* bool_start = (VkBool32*)(extension_struct + offset);
+        SetBoolArrayTrue(bool_start, (sizeof(*extension_struct) - offset)/4);
+        return;
+      } else {
+        extension_struct = static_cast<VkPhysicalDeviceDescriptorIndexingFeaturesEXT*>(extension_struct->pNext);
+      }
     }
 ''',
 'vkGetPhysicalDeviceFormatProperties': '''
@@ -739,6 +742,11 @@ CUSTOM_C_INTERCEPTS = {
     GetPhysicalDeviceFormatProperties(physicalDevice, format, &pFormatProperties->formatProperties);
 ''',
 'vkGetPhysicalDeviceImageFormatProperties': '''
+    // A hardcoded unsupported format
+    if (format == 130) {
+        return VK_ERROR_FORMAT_NOT_SUPPORTED;
+    }
+
     // TODO: Just hard-coding some values for now
     // TODO: If tiling is linear, limit the mips, levels, & sample count
     if (VK_IMAGE_TILING_LINEAR == tiling) {
@@ -767,6 +775,33 @@ CUSTOM_C_INTERCEPTS = {
 ''',
 'vkGetPhysicalDeviceProperties2KHR': '''
     GetPhysicalDeviceProperties(physicalDevice, &pProperties->properties);
+    auto extension_struct = static_cast<VkPhysicalDevicePushDescriptorPropertiesKHR*>(pProperties->pNext);
+    while(extension_struct) {
+      if(extension_struct->sType == VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR) {
+        extension_struct->maxPushDescriptors = 32;
+        return;
+      } else {
+        extension_struct = static_cast<VkPhysicalDevicePushDescriptorPropertiesKHR*>(extension_struct->pNext);
+      }
+    }
+''',
+'vkGetPhysicalDeviceExternalSemaphoreProperties':'''
+    // Hard code support for all handle types and features
+    pExternalSemaphoreProperties->exportFromImportedHandleTypes = 0x1F;
+    pExternalSemaphoreProperties->compatibleHandleTypes = 0x1F;
+    pExternalSemaphoreProperties->externalSemaphoreFeatures = 0x3;
+''',
+'vkGetPhysicalDeviceExternalSemaphorePropertiesKHR':'''
+    GetPhysicalDeviceExternalSemaphoreProperties(physicalDevice, pExternalSemaphoreInfo, pExternalSemaphoreProperties);
+''',
+'vkGetPhysicalDeviceExternalFenceProperties':'''
+    // Hard code support for all handle types and features
+    pExternalFenceProperties->exportFromImportedHandleTypes = 0x0F;
+    pExternalFenceProperties->compatibleHandleTypes = 0x1F;
+    pExternalFenceProperties->externalFenceFeatures = 0x3;
+''',
+'vkGetPhysicalDeviceExternalFencePropertiesKHR':'''
+    GetPhysicalDeviceExternalFenceProperties(physicalDevice, pExternalFenceInfo, pExternalFenceProperties);
 ''',
 'vkGetBufferMemoryRequirements': '''
     // TODO: Just hard-coding reqs for now

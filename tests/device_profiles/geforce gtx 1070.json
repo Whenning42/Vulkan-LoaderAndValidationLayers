@@ -2,45 +2,60 @@
     "$schema": "https://schema.khronos.org/vulkan/devsim_1_0_0.json#",
     "comments": {
         "info": "Vulkan Hardware Report generated via https://vulkan.gpuinfo.org",
-        "desc": "https://vulkan.gpuinfo.org/displayreport.php?id=2110"
+        "desc": "https://vulkan.gpuinfo.org/displayreport.php?id=3187"
     },
     "environment": {
         "architecture": "x86_64",
         "comment": "",
         "name": "windows",
-        "reportversion": "1.4",
-        "submitter": "",
+        "reportversion": "1.6",
+        "submitter": "JamesAMD",
         "version": "10"
     },
     "extended": {
         "devicefeatures2": [
             {
-                "extension": "VK_KHX_multiview",
-                "name": "multiview",
+                "extension": "VK_KHR_variable_pointers",
+                "name": "variablePointersStorageBuffer",
                 "supported": true
             },
             {
-                "extension": "VK_KHX_multiview",
-                "name": "multiviewGeometryShader",
+                "extension": "VK_KHR_variable_pointers",
+                "name": "variablePointers",
                 "supported": true
             },
             {
-                "extension": "VK_KHX_multiview",
-                "name": "multiviewTessellationShader",
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storageBuffer16BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "uniformAndStorageBuffer16BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storagePushConstant16",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storageInputOutput16",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendCoherentOperations",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_sampler_ycbcr_conversion",
+                "name": "samplerYcbcrConversion",
                 "supported": true
             }
         ],
         "deviceproperties2": [
-            {
-                "extension": "VK_KHX_multiview",
-                "name": "maxMultiviewViewCount",
-                "value": "32"
-            },
-            {
-                "extension": "VK_KHX_multiview",
-                "name": "maxMultiviewInstanceIndex",
-                "value": "134217727"
-            },
             {
                 "extension": "VK_KHR_push_descriptor",
                 "name": "maxPushDescriptors",
@@ -54,7 +69,221 @@
             {
                 "extension": "VK_NVX_multiview_per_view_attributes",
                 "name": "perViewPositionAllComponents",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_sampler_filter_minmax",
+                "name": "filterMinmaxSingleComponentFormats",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_sampler_filter_minmax",
+                "name": "filterMinmaxImageComponentMapping",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendMaxColorAttachments",
                 "value": "8"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendIndependentBlend",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendNonPremultipliedSrcColor",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendNonPremultipliedDstColor",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendCorrelatedOverlap",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_blend_operation_advanced",
+                "name": "advancedBlendAllOperations",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_sampler_ycbcr_conversion",
+                "name": "combinedImageSamplerDescriptorCount",
+                "value": "0"
+            }
+        ]
+    },
+    "instance": {
+        "extensions": [
+            {
+                "extensionName": "VK_EXT_debug_report",
+                "specVersion": 8
+            },
+            {
+                "extensionName": "VK_EXT_display_surface_counter",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_get_physical_device_properties2",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_get_surface_capabilities2",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_surface",
+                "specVersion": 25
+            },
+            {
+                "extensionName": "VK_KHR_win32_surface",
+                "specVersion": 6
+            },
+            {
+                "extensionName": "VK_KHX_device_group_creation",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_external_fence_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_external_memory_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_external_semaphore_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_NV_external_memory_capabilities",
+                "specVersion": 1
+            }
+        ],
+        "layers": [
+            {
+                "description": "LunarG debug layer",
+                "extensions": [],
+                "implementationVersion": 2,
+                "layerName": "VK_LAYER_LUNARG_api_dump",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG Validation Factory Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_assistant_layer",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG Validation Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_core_validation",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG device simulation layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_device_simulation",
+                "specVersion": 4198473
+            },
+            {
+                "description": "Execution Monitoring Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_monitor",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG Validation Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_object_tracker",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG Validation Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_parameter_validation",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG image capture layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_screenshot",
+                "specVersion": 4198473
+            },
+            {
+                "description": "LunarG Standard Validation",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_standard_validation",
+                "specVersion": 4198473
+            },
+            {
+                "description": "Google Validation Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_GOOGLE_threading",
+                "specVersion": 4198473
+            },
+            {
+                "description": "Google Validation Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_GOOGLE_unique_objects",
+                "specVersion": 4198473
+            },
+            {
+                "description": "Vktrace tracing library",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_LUNARG_vktrace",
+                "specVersion": 4198473
+            },
+            {
+                "description": "NVIDIA Optimus layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_NV_optimus",
+                "specVersion": 4194360
+            },
+            {
+                "description": "NVIDIA Nsight interception layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_NV_nsight",
+                "specVersion": 4194317
+            },
+            {
+                "description": "Debugging capture layer for RenderDoc",
+                "extensions": [],
+                "implementationVersion": 0,
+                "layerName": "VK_LAYER_RENDERDOC_Capture",
+                "specVersion": 4194304
+            },
+            {
+                "description": "NVIDIA Nsight Graphics interception layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_NV_nomad",
+                "specVersion": 4194317
+            },
+            {
+                "description": "Steam Overlay Layer",
+                "extensions": [],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_VALVE_steam_overlay",
+                "specVersion": 4194307
             }
         ]
     },
@@ -63,12 +292,12 @@
         "maxImageArrayLayers": 1,
         "maxImageCount": 8,
         "maxImageExtent": {
-            "height": 749,
+            "height": 755,
             "width": 927
         },
         "minImageCount": 2,
         "minImageExtent": {
-            "height": 749,
+            "height": 755,
             "width": 927
         },
         "presentmodes": [
@@ -121,8 +350,8 @@
         "shaderImageGatherExtended": 1,
         "shaderInt16": 0,
         "shaderInt64": 1,
-        "shaderResourceMinLod": 0,
-        "shaderResourceResidency": 0,
+        "shaderResourceMinLod": 1,
+        "shaderResourceResidency": 1,
         "shaderSampledImageArrayDynamicIndexing": 1,
         "shaderStorageBufferArrayDynamicIndexing": 1,
         "shaderStorageImageArrayDynamicIndexing": 1,
@@ -133,14 +362,14 @@
         "shaderTessellationAndGeometryPointSize": 1,
         "shaderUniformBufferArrayDynamicIndexing": 1,
         "sparseBinding": 1,
-        "sparseResidency16Samples": 0,
-        "sparseResidency2Samples": 0,
-        "sparseResidency4Samples": 0,
-        "sparseResidency8Samples": 0,
-        "sparseResidencyAliased": 0,
-        "sparseResidencyBuffer": 0,
-        "sparseResidencyImage2D": 0,
-        "sparseResidencyImage3D": 0,
+        "sparseResidency16Samples": 1,
+        "sparseResidency2Samples": 1,
+        "sparseResidency4Samples": 1,
+        "sparseResidency8Samples": 1,
+        "sparseResidencyAliased": 1,
+        "sparseResidencyBuffer": 1,
+        "sparseResidencyImage2D": 1,
+        "sparseResidencyImage3D": 1,
         "tessellationShader": 1,
         "textureCompressionASTC_LDR": 0,
         "textureCompressionBC": 1,
@@ -151,17 +380,17 @@
     },
     "VkPhysicalDeviceProperties": {
         "apiVersion": 4194360,
-        "deviceID": 4935,
-        "deviceName": "GeForce 940M",
+        "deviceID": 7041,
+        "deviceName": "GeForce GTX 1070",
         "deviceType": 2,
-        "driverVersion": 1627602944,
+        "driverVersion": 1627701248,
         "limits": {
-            "bufferImageGranularity": 65536,
+            "bufferImageGranularity": 1024,
             "discreteQueuePriorities": 2,
             "framebufferColorSampleCounts": 15,
             "framebufferDepthSampleCounts": 15,
-            "framebufferNoAttachmentsSampleCounts": 15,
-            "framebufferStencilSampleCounts": 15,
+            "framebufferNoAttachmentsSampleCounts": 31,
+            "framebufferStencilSampleCounts": 31,
             "lineWidthGranularity": 0.125,
             "lineWidthRange": [
                 0.5,
@@ -198,19 +427,19 @@
             "maxFragmentDualSrcAttachments": 1,
             "maxFragmentInputComponents": 128,
             "maxFragmentOutputAttachments": 8,
-            "maxFramebufferHeight": 16384,
+            "maxFramebufferHeight": 32768,
             "maxFramebufferLayers": 2048,
-            "maxFramebufferWidth": 16384,
+            "maxFramebufferWidth": 32768,
             "maxGeometryInputComponents": 128,
             "maxGeometryOutputComponents": 128,
             "maxGeometryOutputVertices": 1024,
             "maxGeometryShaderInvocations": 32,
             "maxGeometryTotalOutputComponents": 1024,
             "maxImageArrayLayers": 2048,
-            "maxImageDimension1D": 16384,
-            "maxImageDimension2D": 16384,
-            "maxImageDimension3D": 2048,
-            "maxImageDimensionCube": 16384,
+            "maxImageDimension1D": 32768,
+            "maxImageDimension2D": 32768,
+            "maxImageDimension3D": 16384,
+            "maxImageDimensionCube": 32768,
             "maxInterpolationOffset": 0.4375,
             "maxMemoryAllocationCount": 4096,
             "maxPerStageDescriptorInputAttachments": 8,
@@ -244,8 +473,8 @@
             "maxVertexInputBindings": 32,
             "maxVertexOutputComponents": 128,
             "maxViewportDimensions": [
-                16384,
-                16384
+                32768,
+                32768
             ],
             "maxViewports": 16,
             "minInterpolationOffset": -0.5,
@@ -267,7 +496,7 @@
             "sampledImageColorSampleCounts": 15,
             "sampledImageDepthSampleCounts": 15,
             "sampledImageIntegerSampleCounts": 15,
-            "sampledImageStencilSampleCounts": 15,
+            "sampledImageStencilSampleCounts": 31,
             "sparseAddressSpaceSize": -1,
             "standardSampleLocations": 1,
             "storageImageSampleCounts": 15,
@@ -278,47 +507,48 @@
             "timestampComputeAndGraphics": 1,
             "timestampPeriod": 1,
             "viewportBoundsRange": [
-                -32768,
-                32768
+                -65536,
+                65536
             ],
             "viewportSubPixelBits": 8
         },
         "pipelineCacheUUID": [
-            5,
-            245,
-            46,
-            196,
+            156,
+            36,
+            50,
+            163,
+            36,
+            223,
+            184,
+            225,
+            37,
+            224,
+            174,
             153,
-            80,
-            67,
-            114,
-            195,
-            180,
-            214,
-            97,
-            191,
-            27,
-            94,
-            115
+            230,
+            226,
+            247,
+            65
         ],
         "sparseProperties": {
-            "residencyAlignedMipSize": 1,
-            "residencyNonResidentStrict": 0,
+            "residencyAlignedMipSize": 0,
+            "residencyNonResidentStrict": 1,
             "residencyStandard2DBlockShape": 1,
             "residencyStandard2DMultisampleBlockShape": 1,
             "residencyStandard3DBlockShape": 1
         },
+        "subgroupProperties": [],
         "vendorID": 4318
     },
     "VkPhysicalDeviceMemoryProperties": {
         "memoryHeaps": [
             {
                 "flags": 1,
-                "size": 2119041024
+                "size": 8489271296
             },
             {
                 "flags": 0,
-                "size": 8500805632
+                "size": 17095983104
             }
         ],
         "memoryTypes": [
@@ -394,10 +624,6 @@
             "specVersion": 1
         },
         {
-            "extensionName": "VK_KHR_get_physical_device_properties2",
-            "specVersion": 1
-        },
-        {
             "extensionName": "VK_KHR_image_format_list",
             "specVersion": 1
         },
@@ -407,6 +633,10 @@
         },
         {
             "extensionName": "VK_KHR_maintenance2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance3",
             "specVersion": 1
         },
         {
@@ -506,11 +736,23 @@
             "specVersion": 1
         },
         {
+            "extensionName": "VK_EXT_post_depth_coverage",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_sampler_filter_minmax",
+            "specVersion": 1
+        },
+        {
             "extensionName": "VK_EXT_shader_subgroup_ballot",
             "specVersion": 1
         },
         {
             "extensionName": "VK_EXT_shader_subgroup_vote",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_viewport_index_layer",
             "specVersion": 1
         },
         {
@@ -526,11 +768,43 @@
             "specVersion": 1
         },
         {
+            "extensionName": "VK_NV_fill_rectangle",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_fragment_coverage_to_color",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_framebuffer_mixed_samples",
+            "specVersion": 1
+        },
+        {
             "extensionName": "VK_NV_glsl_shader",
             "specVersion": 1
         },
         {
             "extensionName": "VK_NV_win32_keyed_mutex",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_clip_space_w_scaling",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_sample_mask_override_coverage",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_viewport_array2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_viewport_swizzle",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_geometry_shader_passthrough",
             "specVersion": 1
         },
         {
@@ -570,67 +844,77 @@
             "queueCount": 1,
             "queueFlags": 4,
             "timestampValidBits": 64
+        },
+        {
+            "minImageTransferGranularity": {
+                "depth": 1,
+                "height": 1,
+                "width": 1
+            },
+            "queueCount": 8,
+            "queueFlags": 2,
+            "timestampValidBits": 64
         }
     ],
     "ArrayOfVkFormatProperties": [
         {
             "formatID": 1,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 2,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 3,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 4,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 8
         },
         {
             "formatID": 5,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 6,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 7,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 8,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 8
         },
         {
             "formatID": 9,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 10,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -647,32 +931,32 @@
         },
         {
             "formatID": 13,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 14,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 15,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 16,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 17,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -689,14 +973,14 @@
         },
         {
             "formatID": 20,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 21,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
@@ -791,14 +1075,14 @@
         },
         {
             "formatID": 37,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 38,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -815,32 +1099,32 @@
         },
         {
             "formatID": 41,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 42,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 43,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 0
         },
         {
             "formatID": 44,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 45,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 72
         },
         {
@@ -857,32 +1141,32 @@
         },
         {
             "formatID": 48,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 50177,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 115713,
             "bufferFeatures": 72
         },
         {
             "formatID": 49,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 50177,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 115713,
             "bufferFeatures": 72
         },
         {
             "formatID": 50,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 0
         },
         {
             "formatID": 51,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 52,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -899,26 +1183,26 @@
         },
         {
             "formatID": 55,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 56,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 57,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 0
         },
         {
             "formatID": 58,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56705,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122241,
             "bufferFeatures": 72
         },
         {
@@ -941,8 +1225,8 @@
         },
         {
             "formatID": 62,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 50177,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 115713,
             "bufferFeatures": 72
         },
         {
@@ -953,8 +1237,8 @@
         },
         {
             "formatID": 64,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -977,8 +1261,8 @@
         },
         {
             "formatID": 68,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
@@ -989,14 +1273,14 @@
         },
         {
             "formatID": 70,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 71,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -1013,32 +1297,32 @@
         },
         {
             "formatID": 74,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 75,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 76,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 77,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 78,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -1055,20 +1339,20 @@
         },
         {
             "formatID": 81,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 82,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 83,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -1115,14 +1399,14 @@
         },
         {
             "formatID": 91,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 92,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -1139,92 +1423,92 @@
         },
         {
             "formatID": 95,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 96,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 97,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 98,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52359,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117895,
             "bufferFeatures": 120
         },
         {
             "formatID": 99,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52359,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117895,
             "bufferFeatures": 120
         },
         {
             "formatID": 100,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56711,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122247,
             "bufferFeatures": 120
         },
         {
             "formatID": 101,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 102,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 103,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 104,
-            "linearTilingFeatures": 50177,
+            "linearTilingFeatures": 115713,
             "optimalTilingFeatures": 0,
             "bufferFeatures": 72
         },
         {
             "formatID": 105,
-            "linearTilingFeatures": 50177,
+            "linearTilingFeatures": 115713,
             "optimalTilingFeatures": 0,
             "bufferFeatures": 72
         },
         {
             "formatID": 106,
-            "linearTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
             "optimalTilingFeatures": 0,
             "bufferFeatures": 72
         },
         {
             "formatID": 107,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 108,
-            "linearTilingFeatures": 50177,
-            "optimalTilingFeatures": 52355,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 117891,
             "bufferFeatures": 88
         },
         {
             "formatID": 109,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
@@ -1301,38 +1585,38 @@
         },
         {
             "formatID": 122,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 56707,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 122243,
             "bufferFeatures": 88
         },
         {
             "formatID": 123,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 8
         },
         {
             "formatID": 124,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54785,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 120321,
             "bufferFeatures": 0
         },
         {
             "formatID": 125,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54785,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 120321,
             "bufferFeatures": 0
         },
         {
             "formatID": 126,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54785,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 120321,
             "bufferFeatures": 0
         },
         {
             "formatID": 127,
-            "linearTilingFeatures": 0,
-            "optimalTilingFeatures": 0,
+            "linearTilingFeatures": 115713,
+            "optimalTilingFeatures": 116225,
             "bufferFeatures": 0
         },
         {
@@ -1343,110 +1627,110 @@
         },
         {
             "formatID": 129,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54785,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 120321,
             "bufferFeatures": 0
         },
         {
             "formatID": 130,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54785,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 120321,
             "bufferFeatures": 0
         },
         {
             "formatID": 131,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 132,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 133,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 134,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 135,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 136,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 137,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 138,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 139,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 140,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 141,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 142,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 143,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 144,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 145,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
             "formatID": 146,
-            "linearTilingFeatures": 54273,
-            "optimalTilingFeatures": 54273,
+            "linearTilingFeatures": 119809,
+            "optimalTilingFeatures": 119809,
             "bufferFeatures": 0
         },
         {
@@ -1679,15 +1963,201 @@
         },
         {
             "formatID": 1000156000,
-            "linearTilingFeatures": 0,
-            "optimalTilingFeatures": 49152,
-            "bufferFeatures": 49152
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156001,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
         },
         {
             "formatID": 1000156002,
-            "linearTilingFeatures": 0,
-            "optimalTilingFeatures": 1,
-            "bufferFeatures": 1
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156003,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156004,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156005,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156006,
+            "linearTilingFeatures": 5230593,
+            "optimalTilingFeatures": 5230593,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156007,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156008,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156009,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156010,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156011,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156012,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156013,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156014,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156015,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156016,
+            "linearTilingFeatures": 5230593,
+            "optimalTilingFeatures": 5230593,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156017,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156018,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156019,
+            "linearTilingFeatures": 1036289,
+            "optimalTilingFeatures": 1036289,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156020,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156021,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156022,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156023,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156024,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156025,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156026,
+            "linearTilingFeatures": 5230593,
+            "optimalTilingFeatures": 5230593,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156027,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156028,
+            "linearTilingFeatures": 9424897,
+            "optimalTilingFeatures": 9424897,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156029,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156030,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156031,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
+        },
+        {
+            "formatID": 1000156032,
+            "linearTilingFeatures": 13619201,
+            "optimalTilingFeatures": 13619201,
+            "bufferFeatures": 0
         }
     ]
 }
