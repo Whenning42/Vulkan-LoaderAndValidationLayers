@@ -294,7 +294,7 @@ class HelperFileOutputGenerator(OutputGenerator):
             result = str(result).replace('::', '->')
         return result
     #
-    # Check if a structure is or contains a dispatchable (dispatchable = True) or 
+    # Check if a structure is or contains a dispatchable (dispatchable = True) or
     # non-dispatchable (dispatchable = False) handle
     def TypeContainsObjectHandle(self, handle_type, dispatchable):
         if dispatchable:
@@ -639,6 +639,7 @@ class HelperFileOutputGenerator(OutputGenerator):
         extension_helper_header += '#include <vulkan/vulkan.h>\n'
         extension_helper_header += '#include <string.h>\n'
         extension_helper_header += '#include <utility>\n'
+        extension_helper_header += '#include <vector>\n'
         extension_helper_header += '\n'
         extension_helper_header += '\n'
         extension_dict = dict()
